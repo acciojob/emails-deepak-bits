@@ -25,5 +25,52 @@ public class Email {
         // 3. It contains at least one lowercase letter
         // 4. It contains at least one digit
         // 5. It contains at least one special character. Any character apart from alphabets and digits is a special character
+        if(oldPassword.equals(this.password) && isValid(newPassword)) {
+            this.password = newPassword;
+        }
+    }
+
+    private boolean isValid(String password) {
+        return hasAtLeast8Chars(password) && hasOneUpperCase(password) && hasOneLowerCase(password) && hasOneDigit(password) && hasOneSpecialChar(password);
+    }
+
+    private boolean hasAtLeast8Chars(String password) {
+        return password.length() >= 8;
+    }
+
+    private boolean hasOneUpperCase(String password) {
+        int n = password.length();
+        for(int i = 0; i < n; i++) {
+            char ch = password.charAt(i);
+            if(Character.isUpperCase(ch)) return true;
+        }
+        return false;
+    }
+
+    private boolean hasOneLowerCase(String password) {
+        int n = password.length();
+        for(int i = 0; i < n; i++) {
+            char ch = password.charAt(i);
+            if(Character.isLowerCase(ch)) return true;
+        }
+        return false;
+    }
+
+    private boolean hasOneDigit(String password) {
+        int n = password.length();
+        for(int i = 0; i < n; i++) {
+            char ch = password.charAt(i);
+            if(Character.isDigit(ch)) return true;
+        }
+        return false;
+    }
+
+    private boolean hasOneSpecialChar(String password) {
+        int n = password.length();
+        for(int i = 0; i < n; i++) {
+            char ch = password.charAt(i);
+            if(!Character.isDigit(ch) && !Character.isLetter(ch)) return true;
+        }
+        return false;
     }
 }
