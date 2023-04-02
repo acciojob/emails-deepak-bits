@@ -11,7 +11,6 @@ public class Gmail extends Email {
     List<Mail> inbox;
     List<Mail> trash;
 
-
     //Inbox: Stores mails. Each mail has date (Date), sender (String), message (String). It is guaranteed that message is distinct for all mails.
     //Trash: Stores mails. Each mail has date (Date), sender (String), message (String)
     public Gmail(String emailId, int inboxCapacity) {
@@ -29,13 +28,12 @@ public class Gmail extends Email {
         // This means that the date of a new mail is greater than equal to the dates of
         // mails received already.
         if(getInboxSize()==this.inboxCapacity){
-
             Mail mail=inbox.get(0);
             inbox.remove(0);
             trash.add(mail);
-            Mail newMail=new Mail(date ,sender, message);
-            inbox.add(newMail);
         }
+        Mail newMail=new Mail(date ,sender, message);
+        inbox.add(newMail);
     }
 
     public void deleteMail(String message){
