@@ -40,14 +40,25 @@ public class Gmail extends Email {
         // Each message is distinct
         // If the given message is found in any mail in the inbox,
         // move the mail to trash, else do nothing
-        int size=getInboxSize();
-        for(int i=0;i<size;i++){
+//        int size=getInboxSize();
+
+        int i = 0;
+        while(i < getInboxSize()) {
             Mail mail=inbox.get(i);
             if(mail.getMessage().equals(message)){
                 inbox.remove(i);
                 trash.add(mail);
+            } else {
+                i++;
             }
         }
+//        for(int i=0;i<size;i++){
+//            Mail mail=inbox.get(i);
+//            if(mail.getMessage().equals(message)){
+//                inbox.remove(i);
+//                trash.add(mail);
+//            }
+//        }
     }
 
     public String findLatestMessage(){
@@ -71,7 +82,6 @@ public class Gmail extends Email {
         for(Mail mail:inbox){
             Date date=mail.getDate();
             if(date.compareTo(start)>=0 && date.compareTo(end)<=0) count++;
-
         }
         return count;
     }
